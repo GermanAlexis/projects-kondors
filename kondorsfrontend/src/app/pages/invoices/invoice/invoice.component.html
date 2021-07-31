@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Gestion Producto</h2>
+<form   (ngSubmit)="saveInvoice()">
+<div class="example-container" >
+  <mat-dialog-content class="mat-typography">
+   
+    <h3>Permite gestionar los datos del productos</h3>
+      <p>
+      <mat-form-field appearance="fill" style="width: 50%;">
+        <mat-label>id del producto</mat-label>
+        <input matInput placeholder="Digite su numero">
+      </mat-form-field>
+      </p>
+  
+      <mat-form-field appearance="fill">
+          <mat-label>Seleccion de producto</mat-label>
+          <mat-select required [(value)]="selectionOption">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let product of products" [value]="product.pid">
+              {{product.pid}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+          <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+        </mat-form-field>
+    
+      <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+        <mat-label>Cantidad a vender</mat-label>
+        <input matInput placeholder="Placeholder"  [ngModelOptions]="{standalone: true}" [(ngModel)]="quantity_sold" >
+        <mat-icon matSuffix>store</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+  
+      <button mat-flat-button style="border-radius: 100%;" (click)="operador()" color="primary">
+          <mat-icon>add</mat-icon>
+      </button>
+  
+    </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color='primary' type="submit" >guardar datos</button>
+</mat-dialog-actions>
+</div>
+</form>

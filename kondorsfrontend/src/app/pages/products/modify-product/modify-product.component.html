@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Gestion Producto</h2>
+<form  [formGroup]="formData"
+(ngSubmit)="productInfo()" >
+<div class="example-container" >
+<mat-dialog-content class="mat-typography">
+   
+  <h3>Permite gestionar los datos del productos</h3>
+    <p>
+    <mat-form-field appearance="fill" style="width: 50%;">
+      <mat-label>id del producto</mat-label>
+      <input matInput placeholder="Digite su numero"  formControlName="id_product">
+    </mat-form-field>
+    </p>
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Nombre del producto</mat-label>
+      <input matInput placeholder="Nombre del prodcut"  formControlName="name_product">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Cantidad en inventario</mat-label>
+      <input matInput placeholder="Placeholder"  formControlName="inventory_quantity">
+      <mat-icon matSuffix>store</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Precio de venta</mat-label  >
+      <input matInput placeholder="precia de venta" formControlName="price_sale">
+      <mat-icon matSuffix>attach_money</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+        <mat-label>Precio de Compra</mat-label  >
+        <input matInput placeholder="precia de compra" formControlName="price_purchase">
+        <mat-icon matSuffix>attach_money</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color='primary' type="submit" >guardar datos</button>
+</mat-dialog-actions>
+</div>
+</form>

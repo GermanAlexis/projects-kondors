@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Gestion Usuario</h2>
+<form  [formGroup]="formData"
+(ngSubmit)="userinfo()" >
+<div class="example-container" >
+<mat-dialog-content class="mat-typography">
+   
+  <h3>Permite editar los datos del usuario</h3>
+    <p>
+    <mat-form-field appearance="fill" style="width: 50%;">
+      <mat-label>identificacion</mat-label>
+      <input matInput placeholder="Digite su numero"  formControlName="identification">
+    </mat-form-field>
+    </p>
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Nombres</mat-label>
+      <input matInput placeholder="Nombres"  formControlName="name">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Apellidos</mat-label>
+      <input matInput placeholder="Placeholder"  formControlName="lastName">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" style="width: 45%; margin: 2%;">
+      <mat-label>Numero Telefono</mat-label  >
+      <input matInput placeholder="tel." formControlName="number_phone">
+      <mat-icon matSuffix>phone_android</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 25%; margin: 2%;">
+        <mat-label>Seleccione la fecha
+        </mat-label>
+        <input matInput [matDatepicker]="dp3" formControlName="date_bird">
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 10%; margin: 2%;">
+        <input matInput disabled>{{ age }}
+        <mat-hint>Edad</mat-hint>
+      </mat-form-field>
+    
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color='primary' type="submit" >guardar datos</button>
+</mat-dialog-actions>
+</div>
+</form>

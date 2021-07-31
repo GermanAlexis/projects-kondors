@@ -1,0 +1,59 @@
+    <mat-grid-list cols="3">
+        <mat-grid-tile>
+            <mat-card class="example-card" style="justify-content: center;">
+            <mat-card-header style="align-items: center; text-align: center; margin-left: 30%;">
+                <mat-icon> person_pin</mat-icon>
+              <mat-card-title>Usuarios</mat-card-title>
+              <mat-card-subtitle>Gestion de Usuarios</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions style ="margin-left: 25%">
+              <button [routerLink]="['/users']" mat-raised-button  color="primary">Ver listado 
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <button  (click)=" openDialogUser()" mat-raised-button  color="primary">
+                <mat-icon>group_add</mat-icon>
+                  Agregar Usuario
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
+          <mat-card class="example-card" style="justify-content: center;">
+            <mat-card-header style="align-items: center; text-align: center; margin-left: 30%;">
+                <mat-icon> business</mat-icon>
+              <mat-card-title>Productos</mat-card-title>
+              <mat-card-subtitle>Gestion de Productos</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions style ="margin-left: 25%">
+              <button [routerLink]="['/products']" mat-raised-button  color="primary">Ver productos
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <a (click)=" openDialogProduct()"  mat-raised-button  color="primary">
+                <mat-icon>add</mat-icon>
+                  Agregar productos
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="example-card" style="justify-content: center;">
+            <mat-card-header style="align-items: center; text-align: center; margin-left: 30%;">
+                <mat-icon> score</mat-icon>
+              <mat-card-title>Facturas</mat-card-title>
+              <mat-card-subtitle>Gestion de Facturas</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions style ="margin-left: 25%">
+              <button [routerLink]="['/invoices']"  mat-raised-button  color="accent">Ver Facturas
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <button (click)=" openDialoginvoice()" mat-raised-button  color="accent">
+                <mat-icon>poll</mat-icon>
+                Crear factura
+              </button>
+          
+             
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
