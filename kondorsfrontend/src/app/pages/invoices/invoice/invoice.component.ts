@@ -10,7 +10,7 @@ import { InvoicesService } from '../invoices.service';
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private productsService: ProductsService, private invoicesService: InvoicesService ) { }
+  constructor(private productsService: ProductsService, private invoicesService: InvoicesService ) { }
 
   formData!: FormGroup
   products! :any
@@ -34,7 +34,6 @@ export class InvoiceComponent implements OnInit {
   getProduct(){
     this.productsService.getProducts().subscribe( (resp: any ) => {
         this.products = resp.products
-        console.log(this.products);
     })
   }
 

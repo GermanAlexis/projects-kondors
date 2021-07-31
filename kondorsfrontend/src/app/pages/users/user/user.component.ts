@@ -11,7 +11,7 @@ import { ModiftyUserComponent } from '../modifty-user/modifty-user.component';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, AfterViewInit {
+export class UserComponent implements OnInit {
   
   
   data: any = []
@@ -19,13 +19,9 @@ export class UserComponent implements OnInit, AfterViewInit {
   dataSource = this.data;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator; 
-
-  ngAfterViewInit() {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-  }
+  length = 0
+  pageSize = 10
+  pageIndex = 0
 
   constructor(private usersService: UsersService, public dialog:  MatDialog) { 
     this.dataSource
@@ -36,6 +32,13 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.getUsers()
   }
 
+  countPages() {
+    if(this.pageIndex == 0) {
+      this.length = this.data.length
+    } else {
+      this.length = this.length - this.pageSize
+    }
+  }
   openDialog(uid: string) {
     const dialogRef = new MatDialogConfig()
     dialogRef.disableClose = true;
@@ -50,6 +53,7 @@ export class UserComponent implements OnInit, AfterViewInit {
   getUsers(){
     this.usersService.get().subscribe((resp: any) => {
     this.data = resp.users
+    this.countPages() 
     });
   }
 

@@ -15,34 +15,36 @@
     
         <!-- ID Column -->
         <ng-container matColumnDef="date_invoice">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de factura </th>
+          <th mat-header-cell class="th-center" *matHeaderCellDef mat-sort-header> Fecha de factura </th>
           <td mat-cell *matCellDef="let element">{{ element.date_invoice | date : 'longDate'}} </td>
         </ng-container>
         
         <!-- Progress Column -->
         <ng-container matColumnDef="id_invoice">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero de factura </th>
+          <th mat-header-cell class="th-center" *matHeaderCellDef mat-sort-header> Numero de factura </th>
           <td mat-cell *matCellDef="let element"> {{element.id_invoice}}  </td>
         </ng-container>
     
         <!-- Fruit Column -->
         <ng-container matColumnDef="identification">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>identificacion Cliente  </th>
+          <th mat-header-cell class="th-center" *matHeaderCellDef mat-sort-header>identificacion Cliente  </th>
           <td mat-cell *matCellDef="let element"> {{ element.user.identification }} </td>
       </ng-container>
 
       <ng-container matColumnDef="price_sale">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>  id  producto </th>
-        <td mat-cell *matCellDef="let element"> {{element.price_sale}} </td>
+        <th mat-header-cell class="th-center" *matHeaderCellDef mat-sort-header>  id  producto </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-raised-button button-block  color="primary" style="width: 90%; "
+                    matTooltip="ver factura"
+                    (click)="openDialogInvoice(element)">
+           <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="price_purchase">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > Cantidad vendida  </th>
-        <td mat-cell *matCellDef="let element"> {{element.price_purchase}} </td>
-      </ng-container>
 
       <ng-container matColumnDef="total_sold">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header >Total venta  </th>
+          <th mat-header-cell class="th-center" *matHeaderCellDef mat-sort-header >Total venta  </th>
           <td mat-cell *matCellDef="let element"> {{element.total_sold}} </td>
         </ng-container>
 

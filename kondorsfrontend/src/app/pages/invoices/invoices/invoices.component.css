@@ -11,6 +11,10 @@ table {
     width: 17%;
   }
 
+  .th-center{
+    text-align: center !important
+  }
+
   button {
     margin: 2%
   }

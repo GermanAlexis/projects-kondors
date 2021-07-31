@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { InvoicesService } from '../invoices.service';
 import {DateAdapter} from '@angular/material/core';
 import * as moment from 'moment';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalinoviceComponent } from './modalinovice/modalinovice.component';
 
 @Component({
   selector: 'app-invoices',
@@ -19,7 +21,6 @@ export class InvoicesComponent implements OnInit {
     'id_invoice',
     'identification',
     'price_sale',
-    'price_purchase',
     'total_sold',
   ]
 
@@ -35,7 +36,7 @@ export class InvoicesComponent implements OnInit {
     // this.dataSource.sort = this.sort;
     // this.dataSource.paginator = this.paginator;
   }
-  constructor( private invoicesService: InvoicesService ) { }
+  constructor( private invoicesService: InvoicesService, public dialog:  MatDialog ) { }
 
   ngOnInit(): void {
     this.getallInvoice()  
@@ -43,7 +44,18 @@ export class InvoicesComponent implements OnInit {
   getallInvoice() {
     this.invoicesService.getInvoice().subscribe( (resp: any) => {
       this.data = resp.invoices
+      
     })
+  }
+
+  openDialogInvoice(invoice: any){
+      const dialogRef = new MatDialogConfig()
+      dialogRef.disableClose = false;
+      dialogRef.autoFocus = true;
+      dialogRef.width = '50%'
+     dialogRef.data = [invoice.products] 
+    this.dialog.open( ModalinoviceComponent, dialogRef)
+    
   }
 
   getfilter(){

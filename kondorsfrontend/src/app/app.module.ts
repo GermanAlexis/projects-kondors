@@ -18,6 +18,7 @@ import { ModifyProductComponent } from './pages/products/modify-product/modify-p
 import { InvoiceComponent } from './pages/invoices/invoice/invoice.component';
 import { InvoicesComponent } from './pages/invoices/invoices/invoices.component';
 import { FormsModule } from '@angular/forms';
+import { ModalinoviceComponent } from './pages/invoices/invoices/modalinovice/modalinovice.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     ProductsComponent,
     ModifyProductComponent,
     InvoiceComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    ModalinoviceComponent
   ],
   imports: [
     BrowserModule,
