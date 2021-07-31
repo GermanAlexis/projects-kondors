@@ -19,6 +19,10 @@ export class UsersService {
     return this.http.get(`${base_url}/users/${uid}`)
   }
 
+  getUserById(uid: number){
+    return this.http.get(`${base_url}/users/filter/${uid}`)
+  }
+
   createUser(data: any) {
     return this.http.post(`${base_url}/users`, data )
   }

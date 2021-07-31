@@ -4,6 +4,7 @@ import { InvoiceComponent } from 'src/app/pages/invoices/invoice/invoice.compone
 import { ModifyProductComponent } from 'src/app/pages/products/modify-product/modify-product.component';
 import { ProductsComponent } from 'src/app/pages/products/product/products.component';
 import { ModiftyUserComponent } from 'src/app/pages/users/modifty-user/modifty-user.component';
+import { ShearedComponent } from '../search/sheared/sheared.component';
 
 @Component({
   selector: 'app-home',
@@ -40,11 +41,13 @@ export class HomeComponent implements OnInit {
   }
 
 
-  openDialoginvoice() {
+  openDialoginvoice(routeInvoice: string) {
     const dialogRef = new MatDialogConfig()
-    dialogRef.disableClose = true;
+    dialogRef.disableClose = false;
     dialogRef.autoFocus = true;
     dialogRef.width = '50%'
-    this.dialog.open( InvoiceComponent , dialogRef)
+    dialogRef.closeOnNavigation = true
+    dialogRef.data  = {id: routeInvoice}
+    this.dialog.open( ShearedComponent, dialogRef)
   }
 }

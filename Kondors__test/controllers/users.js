@@ -43,6 +43,34 @@ const getByIdUser = async (req,res) => {
     });
   }
 }
+
+const getById = async (req,res) => {
+
+  const uid = req.params.id
+  try {
+      const  getId = await User.findOne({identification: uid});
+
+      if(!getId) {
+        return res.status(400).json({
+          ok: false,
+          mgs: 'the user no exist',
+        });
+      }
+      res.status(201).json({
+        Ok: true,
+        mgs: 'get user',
+        user: getId
+      });
+
+  } catch (error) {
+    console.log(error),
+    res.status(500).json({
+      Ok: false,
+      mgs: 'see logs',
+    });
+  }
+}
+
 const createUser = async (req, res) => {
   const { identification, date_bird } = req.body;
   try {
@@ -131,5 +159,6 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  getByIdUser
+  getByIdUser,
+  getById
 };

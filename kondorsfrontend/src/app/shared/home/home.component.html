@@ -44,10 +44,10 @@
               <mat-card-subtitle>Gestion de Facturas</mat-card-subtitle>
             </mat-card-header>
             <mat-card-actions style ="margin-left: 25%">
-              <button [routerLink]="['/invoices']"  mat-raised-button  color="accent">Ver Facturas
+              <button (click)=" openDialoginvoice('allinvoice')"  mat-raised-button  color="accent">Ver Facturas
                 <mat-icon>more_vert</mat-icon>
               </button>
-              <button (click)=" openDialoginvoice()" mat-raised-button  color="accent">
+              <button (click)=" openDialoginvoice('')" mat-raised-button  color="accent">
                 <mat-icon>poll</mat-icon> Crear factura
               </button>
             </mat-card-actions>

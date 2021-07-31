@@ -19,6 +19,7 @@ import { InvoiceComponent } from './pages/invoices/invoice/invoice.component';
 import { InvoicesComponent } from './pages/invoices/invoices/invoices.component';
 import { FormsModule } from '@angular/forms';
 import { ModalinoviceComponent } from './pages/invoices/invoices/modalinovice/modalinovice.component';
+import { ShearedComponent } from './shared/search/sheared/sheared.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ModalinoviceComponent } from './pages/invoices/invoices/modalinovice/mo
     ModifyProductComponent,
     InvoiceComponent,
     InvoicesComponent,
-    ModalinoviceComponent
+    ModalinoviceComponent,
+    ShearedComponent
   ],
   imports: [
     BrowserModule,

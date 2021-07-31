@@ -5,7 +5,8 @@ const {
   createUser,
   updateUser,
   deleteUser,
-  getByIdUser
+  getByIdUser,
+  getById
 } = require('../controllers/users');
 const { validateFields } = require('../middlewares/validate-fields');
 
@@ -13,6 +14,7 @@ const router = Router();
 
 router.get('/', getUsers);
 router.get('/:id', getByIdUser);
+router.get('/filter/:id', getById);
 
 router.post(
   '/',
