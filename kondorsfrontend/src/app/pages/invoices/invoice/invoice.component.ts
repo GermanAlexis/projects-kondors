@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 import { ProductsService } from '../../products/products.service';
 import { InvoicesService } from '../invoices.service';
 
@@ -10,7 +11,7 @@ import { InvoicesService } from '../invoices.service';
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor(private productsService: ProductsService, private invoicesService: InvoicesService ) { }
+  constructor(private productsService: ProductsService, private invoicesService: InvoicesService, public iziToast: Ng2IzitoastService ) { }
 
   formData!: FormGroup
   products! :any
@@ -63,10 +64,14 @@ export class InvoiceComponent implements OnInit {
     }
 
     currentInvoice.id_invoice = this.id_invoice
-    // currentInvoice.user = ;
     currentInvoice.products = this.sale_product
-    this.invoicesService.createInvoice(currentInvoice).subscribe( resp => {
-        console.log(resp)
+    this.invoicesService.createInvoice(currentInvoice).subscribe( (resp: any) => {
+        if(resp.Ok == true ){
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        }
     })
   }
 }

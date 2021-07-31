@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { UsersService } from '../users.service';
 import { ModiftyUserComponent } from '../modifty-user/modifty-user.component';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class UserComponent implements OnInit {
   pageSize = 10
   pageIndex = 0
 
-  constructor(private usersService: UsersService, public dialog:  MatDialog) { 
+  constructor(private usersService: UsersService, public dialog:  MatDialog, public iziToast: Ng2IzitoastService) { 
     this.dataSource
   }
  
@@ -52,14 +53,28 @@ export class UserComponent implements OnInit {
 
   getUsers(){
     this.usersService.get().subscribe((resp: any) => {
-    this.data = resp.users
-    this.countPages() 
+    
+      if(resp.Ok == true ){
+        this.data = resp.users
+        this.countPages() 
+        this.iziToast.success({
+          title: 'Correcto'
+        }); 
+      }
+
     });
   }
 
   deleteUser(uid: string){
-    this.usersService.deleteUser(uid).subscribe( respdelete => {
-      this.getUsers()  
+    this.usersService.deleteUser(uid).subscribe( (respdelete: any) => {
+      if(respdelete.Ok == true){
+        this.iziToast.success({
+          title: 'Correcto',
+          message: respdelete.msg
+        });
+        this.getUsers()  
+      }
+       
     })
   }
 

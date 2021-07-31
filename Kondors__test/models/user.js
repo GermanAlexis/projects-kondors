@@ -15,7 +15,7 @@ const userSchema = Schema({
     required: true,
   },
   date_bird: {
-    type: String,
+    type: Date,
     required: false
   },
   number_phone: {

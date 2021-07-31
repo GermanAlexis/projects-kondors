@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class ModifyProductComponent implements OnInit {
   pid!: string
 
   formData!: FormGroup
-  constructor(  @Inject(MAT_DIALOG_DATA) data: any, private fb: FormBuilder, private productsService: ProductsService) {  this.pid = data.id}
+  constructor(  @Inject(MAT_DIALOG_DATA) data: any, 
+                private fb: FormBuilder, 
+                private productsService: ProductsService,
+                public iziToast: Ng2IzitoastService) {  this.pid = data.id}
 
   ngOnInit(): void {
     this.pid == '' ? '' : this.getProduct()
@@ -36,20 +40,54 @@ export class ModifyProductComponent implements OnInit {
   }
   productInfo(){
     if(this.pid == ''){
-      this.productsService.createProduct(this.formData.value).subscribe(resp => {
-        console.log(resp)
+      this.productsService.createProduct(this.formData.value).subscribe((resp: any) => {
+
+        if(resp.Ok == true){
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        } else {
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.error.mgs
+          });
+        }
+        
       })
     } else {
-      this.productsService.updateProduct(this.pid, this.formData).subscribe(resp => {
-        console.log(resp)
+      this.productsService.updateProduct(this.pid, this.formData).subscribe((resp: any) => {
+       
+        if(resp.Ok == true){
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        } else {
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.error.mgs
+          });
+        }
       })
     }
 
   }
 
   deleteProduct(){
-    this.productsService.deleteProduct(this.pid).subscribe( resp => {
-      console.log(resp)
+    this.productsService.deleteProduct(this.pid).subscribe( (resp : any) => {
+      
+      if(resp.Ok == true){
+        this.iziToast.success({
+          title: 'Correcto',
+          message: resp.msg
+        });
+      } else {
+        this.iziToast.success({
+          title: 'Correcto',
+          message: resp.error.mgs
+        });
+      }
     })
   }
 }

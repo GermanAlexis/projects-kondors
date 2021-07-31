@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 import { InvoiceComponent } from 'src/app/pages/invoices/invoice/invoice.component';
 import { UsersService } from 'src/app/pages/users/users.service';
 
@@ -13,9 +14,12 @@ export class ShearedComponent implements OnInit {
 
   data: any = []
   value: any = '';
-  constructor(   public dialogRef: MatDialogRef<ShearedComponent>,
+  constructor( @Inject(MAT_DIALOG_DATA) data: any,
+                public dialogRef: MatDialogRef<ShearedComponent>,
                 public dialog:  MatDialog,
-                @Inject(MAT_DIALOG_DATA) data: any, private userService: UsersService, private router: Router) { this.data = data }
+                private userService: UsersService,
+                public iziToast: Ng2IzitoastService,
+                private router: Router) { this.data = data }
 
   ngOnInit(): void {
   }
@@ -23,6 +27,7 @@ export class ShearedComponent implements OnInit {
   search(){
     if(this.value > 0 ){
       this.userService.getUserById(this.value).subscribe((resp: any) => {
+        console.log( resp)
         if(this.data.id == 'allinvoice' && resp.Ok == true){ 
             this.router.navigateByUrl(`/invoices`);
             this.dialogRef.close();
@@ -37,9 +42,13 @@ export class ShearedComponent implements OnInit {
               this.dialogRef.close();
 
             }
-          
-          })
+           
+            this.iziToast.success({
+              title: 'Correcto'
+          }); 
 
+          })
+        
           
     }
   }

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 import { UsersService } from '../users.service';
 
 
@@ -15,7 +16,10 @@ export class ModiftyUserComponent implements OnInit {
   age: string | undefined
 
   formData!: FormGroup;
-  constructor( @Inject(MAT_DIALOG_DATA) data: any, private usersService: UsersService, private fb: FormBuilder ) {
+  constructor( @Inject(MAT_DIALOG_DATA) data: any, 
+                private usersService: UsersService,
+                private fb: FormBuilder,
+                public iziToast: Ng2IzitoastService ) {
     this.uid = data.id;
   }
   
@@ -48,11 +52,30 @@ export class ModiftyUserComponent implements OnInit {
   userinfo() {
     this.formData.controls['date_bird'].setValue ( moment( this.formData.get('date_bird')?.value).format('YYYY/MM/DD HH:mm:ss')) 
     if(this.uid == ''){
-      this.usersService.createUser(this.formData.value).subscribe(resp => {
-        console.log(resp)
+      this.usersService.createUser(this.formData.value).subscribe((resp:any) => {
+
+        if(resp.Ok == true){
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        }
+       
       })
     } else {
-      this.usersService.put(this.uid, this.formData.value);
+      this.usersService.put(this.uid, this.formData.value).subscribe((resp: any) => {
+        if(resp.Ok == true){
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        } else {
+          this.iziToast.success({
+            title: 'Correcto',
+            message: resp.msg
+          });
+        }
+      })
     }
   }
 

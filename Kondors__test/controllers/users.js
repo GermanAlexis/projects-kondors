@@ -83,7 +83,7 @@ const createUser = async (req, res) => {
     }
 
     const user = new User(req.body);
-    user.date_bird = moment().diff(date_bird, 'years')
+    user.date_bird = moment().diff(req.body.date_bird, 'years')
     await user.save();
 
     res.status(201).json({
@@ -112,17 +112,11 @@ const updateUser = async (req, res) => {
       });
     }
     const { identification, ...campus } = req.body;
-    if (userBD.identification !== identification) {
-      const existEmail = await User.findOne({ identification });
-      if (existEmail) {
-        res.status(400).json({
-          ok: false,
-          msg: 'la identificacion ya existe en otro usuario',
-        });
-      }
-    }
+    // const dateS = moment(campus.date_bird).format('YYYY-MM-DD')
+    campus.age = moment().diff(campus.date_bird, 'years')
     const userUpdate = await User.findByIdAndUpdate(uid, campus, { new: true });
-
+    
+    console.log(userUpdate)
     res.status(200).json({
       ok: true,
       msg: 'Se actualizo con exito',

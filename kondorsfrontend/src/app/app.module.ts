@@ -20,6 +20,7 @@ import { InvoicesComponent } from './pages/invoices/invoices/invoices.component'
 import { FormsModule } from '@angular/forms';
 import { ModalinoviceComponent } from './pages/invoices/invoices/modalinovice/modalinovice.component';
 import { ShearedComponent } from './shared/search/sheared/sheared.component';
+import { Ng2IziToastModule } from 'ng2-izitoast';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,8 @@ import { ShearedComponent } from './shared/search/sheared/sheared.component';
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
+    Ng2IziToastModule
   ],
 providers: [MatNativeDateModule],
   bootstrap: [AppComponent]

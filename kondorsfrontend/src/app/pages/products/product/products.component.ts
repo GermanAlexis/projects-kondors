@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Ng2IzitoastService } from 'ng2-izitoast';
 import { ModifyProductComponent } from '../modify-product/modify-product.component';
 import { ProductsService } from '../products.service';
 
@@ -19,12 +18,7 @@ export class ProductsComponent implements OnInit {
   pageSize = 10
   pageIndex = 0
 
-  ngAfterViewInit() {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-  }
- 
-  constructor(private productsService: ProductsService, public dialog:  MatDialog) {this.dataSource }
+    constructor(private productsService: ProductsService, public dialog:  MatDialog, public iziToast: Ng2IzitoastService ) {this.dataSource }
 
   ngOnInit(): void {
     this.getProducts()
@@ -43,8 +37,20 @@ export class ProductsComponent implements OnInit {
 
   getProducts(){
     this.productsService.getProducts().subscribe((resp: any) => {
-    this.data = resp.products
-    this.countPages()
+      if(resp.Ok == true) {
+        this.data = resp.products
+        this.iziToast.success({
+          title: 'Correcto',
+          message: resp.msg
+        });
+        this.countPages()
+
+      } else {
+        this.iziToast.error({
+          title: 'fallo',
+          message: resp.error.mgs
+        });
+      }
     });
   }
 
