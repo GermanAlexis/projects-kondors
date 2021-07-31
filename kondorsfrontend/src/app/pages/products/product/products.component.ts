@@ -15,10 +15,9 @@ export class ProductsComponent implements OnInit {
   data: any = []
   displayedColumns:  string[] = ['id_product' ,'name_product', 'inventory_quantity', 'price_sale', 'price_purchase','action' ];
   dataSource = this.data;
-  @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator; 
+  length = 0
+  pageSize = 10
+  pageIndex = 0
 
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
@@ -32,8 +31,6 @@ export class ProductsComponent implements OnInit {
    }
 
   openDialog(pid: string) {
-    console.log(pid);
-    
     const dialogRef = new MatDialogConfig()
     dialogRef.disableClose = true;
     dialogRef.autoFocus = true;
@@ -47,8 +44,7 @@ export class ProductsComponent implements OnInit {
   getProducts(){
     this.productsService.getProducts().subscribe((resp: any) => {
     this.data = resp.products
-    console.log(resp);
-    
+    this.countPages()
     });
   }
 
@@ -56,6 +52,14 @@ export class ProductsComponent implements OnInit {
     this.productsService.deleteProduct(pid).subscribe( respdelete => {
       this.getProducts()  
     })
+  }
+
+  countPages() {
+    if(this.pageIndex == 0) {
+      this.length = this.data.length
+    } else {
+      this.length = this.length - this.pageSize
+    }
   }
  
 }

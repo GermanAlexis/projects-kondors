@@ -25,14 +25,14 @@
               <mat-card-title>Productos</mat-card-title>
               <mat-card-subtitle>Gestion de Productos</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-actions style ="margin-left: 25%">
+            <mat-card-actions style ="margin-left: 9%; padding-left: 4%;">
               <button [routerLink]="['/products']" mat-raised-button  color="primary">Ver productos
                 <mat-icon>more_vert</mat-icon>
               </button>
-              <a (click)=" openDialogProduct()"  mat-raised-button  color="primary">
+              <button   (click)=" openDialogProduct()"  mat-raised-button  color="primary">
                 <mat-icon>add</mat-icon>
                   Agregar productos
-              </a>
+              </button>
             </mat-card-actions>
           </mat-card>
         </mat-grid-tile>
@@ -48,11 +48,8 @@
                 <mat-icon>more_vert</mat-icon>
               </button>
               <button (click)=" openDialoginvoice()" mat-raised-button  color="accent">
-                <mat-icon>poll</mat-icon>
-                Crear factura
+                <mat-icon>poll</mat-icon> Crear factura
               </button>
-          
-             
             </mat-card-actions>
           </mat-card>
         </mat-grid-tile>
